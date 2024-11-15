@@ -1,6 +1,6 @@
-Guice Test
+Guice JUnit
 ==========
-dsqd
+TODO Guice & JUnit 5
 
 Installation
 ------------
@@ -8,34 +8,33 @@ With Maven:
 ```xml
 <dependency>
   <groupId>com.coreoz</groupId>
-  <artifactId>http-routes-index</artifactId>
+  <artifactId>guice-junit</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```
 
-Indexing routes to avoid duplication
-------------------------------------
-To check for routes duplication and recognize that:
-- `/users/{userId}/orders/{orderId}` and `/users/{idUser}/orders/{idOrder}` are the same route
-- `/users/{userId}/orders/{orderId}` and `/users/special-user/orders/special-order` are two different routes
-
-The `HttpRoutesIndex` should be used.
-
-Sample usage:
+Getting started
+---------------
+Declare a Guice module dedicated for tests, or use an existing module:
 ```java
-HttpRoutesIndex<String> routesIndex = new HttpRoutesIndex<>();
-routesIndex.addRoute("/users/{userId}/orders/{orderId}", "GET", "my custom data");
-if (routesIndex.hasRoute("/users/{idUser}/orders/{idOrder}", "GET")) {
-    // route already exists
+public class SampleModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(Clock.class).toInstance(Clock.systemDefaultZone());
+    }
 }
 ```
 
-Indexing multiple routes:
+Make a JUnit test inject module members:
 ```java
-List<CustomRouteType> existingCustomRoutes = // Get custom routes
-HttpRoutesIndex<CustomRouteType> routesIndex = existingCustomRoutes
-  .stream()
-   // Convert custom route to ParsedRoute
-  .map(route -> HttpRoutes.parseRoute(route.getPath(), route.getMethod(), route))
-  .collect(HttpRoutesValidator.collector());
+@GuiceTest(SampleModule.class)
+class SampleTest {
+    @Inject
+    Clock clock;
+
+    @Test
+    public void verify_that_clock_object_is_injected() {
+        Assertions.assertThat(clock).isNotNull();
+    }
+}
 ```
