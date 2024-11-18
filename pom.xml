@@ -7,9 +7,9 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Guice test</name>
+	<name>Guice JUnit 5</name>
 	<description>Provide easy Guice integration in JUnit 5</description>
-	<url>https://github.com/Coreoz/guice-test</url>
+	<url>https://github.com/Coreoz/Guice-Junit</url>
 
 	<organization>
 		<name>Coreoz</name>
@@ -34,9 +34,9 @@
 	</developers>
 
 	<scm>
-		<developerConnection>scm:git:git@github.com:Coreoz/guice-test.git</developerConnection>
-		<connection>scm:git:git@github.com:Coreoz/guice-test.git</connection>
-		<url>https://github.com/Coreoz/guice-test</url>
+		<developerConnection>scm:git:git@github.com:Coreoz/Guice-Junit.git</developerConnection>
+		<connection>scm:git:git@github.com:Coreoz/Guice-Junit.git</connection>
+		<url>https://github.com/Coreoz/Guice-Junit</url>
 		<tag>HEAD</tag>
 	</scm>
 
