@@ -1,6 +1,6 @@
 Guice JUnit
 ==========
-TODO Guice & JUnit 5
+Provide a simple and basic JUnit 5 extension to inject Guice members into JUnit 5 tests.
 
 Installation
 ------------
