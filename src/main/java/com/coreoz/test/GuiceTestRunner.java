@@ -3,7 +3,8 @@ package com.coreoz.test;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 import java.util.Arrays;
@@ -14,11 +15,11 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Handle guice injectors creation and test class injection
  */
-public class GuiceTestRunner implements BeforeTestExecutionCallback {
+public class GuiceTestRunner implements BeforeEachCallback {
     private static final Map<String, Injector> injectorCache = new ConcurrentHashMap<>();
 
     @Override
-    public void beforeTestExecution(ExtensionContext context) throws Exception {
+    public void beforeEach(ExtensionContext context) throws Exception {
         Optional<Object> test = context.getTestInstance();
 
         if (test.isPresent()) {
